@@ -1,0 +1,75 @@
+---
+title: "Intro_ggplot2_workshop_Answers"
+output: html_document
+date: "2023-12-20"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Install and Load Packages
+
+Load the tidyverse package (includes ggplot and dplyr) using`library(tidyverse)`
+
+Note: If you dont have the tidyverse package installed on your computer already, you will need to install it using `install.packages('tidyverse')`
+
+```{r}
+
+install.packages('tidyverse')
+
+library(tidyverse)
+
+```
+
+## Read in Data
+
+1.  Set your working directory (this will be specific to your computer and the path to the folder)
+2.  Read in happiness2019.csv file and name the data frame "happy"
+3.  Take a look at data using `view(happy)`,
+
+```{r load Answer}
+
+#you will need to direct this to your own folder using the file path. Or by going to the "session" menu, selecting "set working directory" and navigating to the appropriate folder
+setwd("/Users/lmn7/Downloads/ggplot2_workshop-main")
+
+happy = read.csv("Happiness.csv")
+view(happy)
+
+```
+
+## Make a scatterplot
+
+*Recreate the following figure:*
+
+![](ScatterplotExample.jpg.jpeg){width="50%"}
+
+Steps:
+
+1.  Make a scatterplot that shows the relationship between life expectancy and happiness, where each country is a point on the graph
+2.  Adjust the size of each point to represent the total population of the country represented by each point
+3.  Add a linear regression line using stat_smooth(me)
+
+```{r Answer}
+
+ggplot(happy, aes(life_expect,happiness, size=total_pop))+
+  geom_point()+
+  stat_smooth(method="lm")
+
+```
+
+## Make a barplot
+
+1.  Use `geom_col()` to show the total population of each continent
+2.  Change the color of the bars so that each continent is represented by a different color. (Hint: `col=` will only change the line around the bars, so you will need to use `fill=` instead)
+
+```{r Answer}
+
+ggplot(happy, aes(continent, total_pop, fill=continent))+
+  geom_col()
+
+```
+
+## 
